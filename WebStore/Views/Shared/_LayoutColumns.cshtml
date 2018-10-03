@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section topsection{
+    @RenderSection("topsection", false)
+}
+
+@section scripts{
+    @RenderSection("scripts", false)
+}
+
+@section styles{
+    @RenderSection("styles", false)
+}
+
+
+<div class="row">
+    <div class="col-sm-3">
+        @await Html.PartialAsync("Partial/_LeftSideBar")
+    </div>
+
+    <div class="col-sm-9 padding-right">
+        @RenderBody()
+    </div>
+</div>
