@@ -1,6 +1,6 @@
 ﻿@model WebStore.Models.Cart.DetailsViewModel
 @{
-	ViewData["Title"] = "Корзина";
+	ViewData["Title"] = "Cart";
 }
 <section id="cart_items">
 	<div class="breadcrumbs">
@@ -13,11 +13,11 @@
 		<table class="table table-condensed">
 			<thead>
 				<tr class="cart_menu">
-					<td class="image"> Товар </td>
+					<td class="image"> Product </td>
 					<td class="description"></td>
-					<td class="price"> Цена </td>
-					<td class="quantity"> Количество </td>
-					<td class="total"> Итого </td>
+					<td class="price"> Price </td>
+					<td class="quantity"> Amount </td>
+					<td class="total"> Total </td>
 					<td></td>
 				</tr>
 			</thead>
@@ -36,10 +36,10 @@
 							<h4>
 								<a asp-action="ProductDetails" asp-controller="Catalog" asp-route-id="@item.Key.Id">@item.Key.Name</a>
 							</h4>
-							<p> Артикул: 1089772 </p>
+							<p> Code: 1089772 </p>
 						</td>
 						<td class="cart_price">
-							<p> @(item.Key.Price.ToString("C")) </p>
+							<p> @(item.Key.Price.ToString("")) </p>
 						</td>
 						<td class="cart_quantity">
 							<div class="cart_quantity_button">
@@ -49,7 +49,7 @@
 							</div>
 						</td>
 						<td class="cart_total">
-							<p class="cart_total_price"> @((item.Value * item.Key.Price).ToString("C")) </p>
+							<p class="cart_total_price"> @((item.Value * item.Key.Price).ToString("")) </p>
 						</td>
 						<td class="cart_delete">
 							<a class="cart_quantity_delete" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Key.Id"><i class="fa fa-times"></i></a>
@@ -62,7 +62,7 @@
 </section> <!--/#cart_items-->
 <section id="do_action">
 	<div class="heading">
-		<h3> Оформите заказ </h3>
+		<h3> Place an order </h3>
 	</div>
 	<div class="row login-form">
 		@Html.Partial("Partial/_OrderPartial", Model.OrderViewModel, new ViewDataDictionary(ViewData) { { "sumCart" , sumCart } })

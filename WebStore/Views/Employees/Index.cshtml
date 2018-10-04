@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<EmployeeView>
 @{
-	ViewBag.Title = "Список сотрудников";
+	ViewBag.Title = "Employee list";
 }
 
 <hr/>
 @if (User.IsInRole("Administrator"))
 {
-	<a asp-action="Edit" class="btn btn-success"> Добавить </a>
+	<a asp-action="Edit" class="btn btn-success"> Add </a>
 }
 <hr/>
 <table class="table table-bordered">
@@ -20,7 +20,6 @@
 			}
 			<td>@item.SurName</td>
 			<td>@item.FirstName</td>
-			<td>@item.Patronymic</td>
 			<td>@item.Age</td>
 			<td><a asp-action="Details" asp-controller="Employees" asp-route-id="@item.Id">Details</a></td>
 			<td>

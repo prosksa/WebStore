@@ -31,20 +31,20 @@ namespace WebStore.Controllers
 				var loginResult = await _signInManager.PasswordSignInAsync(model.UserName,
 					model.Password,
 					model.RememberMe,
-					lockoutOnFailure: false);//Проверяем логин/пароль пользователя
+					lockoutOnFailure: false);
 
-				if (loginResult.Succeeded)//если проверка успешна
+				if (loginResult.Succeeded)
 				{
-					if (Url.IsLocalUrl(model.ReturnUrl))//и returnUrl - локальный
+					if (Url.IsLocalUrl(model.ReturnUrl))
 					{
-						return Redirect(model.ReturnUrl);//перенаправляем туда откуда пришли
+						return Redirect(model.ReturnUrl);
 					}
 
-					return RedirectToAction("Index", "Home");//иначе на главную
+					return RedirectToAction("Index", "Home");
 				}
 
 			}
-			ModelState.AddModelError("", "Вход невозможен");//говорим пользователю что вход невозможен
+			ModelState.AddModelError("", "Login is not possible");
 			return View(model);
 		}
 
@@ -59,18 +59,18 @@ namespace WebStore.Controllers
 		{
 			if (!ModelState.IsValid) return View(model);
 
-			var user = new User { UserName = model.UserName, Email = model.Email };//создаем сущность пользователь
-			var createResult = await _userManager.CreateAsync(user, model.Password);//используем менеджер для создания
+			var user = new User { UserName = model.UserName, Email = model.Email };
+			var createResult = await _userManager.CreateAsync(user, model.Password);
 			if (createResult.Succeeded)
 			{
-				await _signInManager.SignInAsync(user, false);//если успешно - производим логин
+				await _signInManager.SignInAsync(user, false);
 
-				await _userManager.AddToRoleAsync(user, "User");// добавляем роль пользователю
+				await _userManager.AddToRoleAsync(user, "User");
 
 				return RedirectToAction("Index", "Home");
 			}
 
-			foreach (var identityError in createResult.Errors)//выводим ошибки
+			foreach (var identityError in createResult.Errors)
 			{
 				ModelState.AddModelError("", identityError.Description);
 			}

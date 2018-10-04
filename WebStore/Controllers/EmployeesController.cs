@@ -16,7 +16,7 @@ namespace WebStore.Controllers
 		}
 
 		/// <summary>
-		/// Вывод списка
+		/// List output
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult Index()
@@ -25,28 +25,25 @@ namespace WebStore.Controllers
 		}
 
 		/// <summary>
-		/// Детали о сотруднике
+		/// Employee details
 		/// </summary>
-		/// <param name="id">Id сотрудника</param>
+		/// <param name="id">Employee Id</param>
 		/// <returns></returns>
 		[Route("{id}")]
 		public IActionResult Details(int id)
 		{
-			//Получаем сотрудника по Id
 			var employee = _employeesData.GetById(id);
 
-			//Если такого не существует
 			if (ReferenceEquals(employee, null))
-				return NotFound();//возвращаем результат 404 Not Found
+				return NotFound();
 
-			//Иначе возвращаем сотрудника
 			return View(employee);
 		}
 
 		/// <summary>
-		/// Добавление или редактирование сотрудника
+		/// Add or edit an employee
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param name="id">Employee Id</param>
 		/// <returns></returns>
 		[Route("edit/{id?}")]
 		public IActionResult Edit(int? id)
@@ -56,7 +53,7 @@ namespace WebStore.Controllers
 			{
 				model = _employeesData.GetById(id.Value);
 				if (ReferenceEquals(model, null))
-					return NotFound();//возвращаем результат 404 Not Found
+					return NotFound();
 			}
 			else
 			{
@@ -71,9 +68,9 @@ namespace WebStore.Controllers
 		{
 			if (model.Age < 18 && model.Age > 75)
 			{
-				ModelState.AddModelError("Age", "Ошибка возраста!");
+				ModelState.AddModelError("Age", "Age error!");
 			}
-			//Проверяем модель на валидность
+
 			if (ModelState.IsValid)
 			{
 				if (model.Id > 0)
@@ -81,12 +78,11 @@ namespace WebStore.Controllers
 					var dbItem = _employeesData.GetById(model.Id);
 
 					if (ReferenceEquals(dbItem, null))
-						return NotFound();//возвращаем результат 404 Not Found
+						return NotFound();
 
 					dbItem.FirstName = model.FirstName;
 					dbItem.SurName = model.SurName;
 					dbItem.Age = model.Age;
-					dbItem.Patronymic = model.Patronymic;
 					dbItem.Position = dbItem.Position;
 				}
 				else
@@ -97,15 +93,14 @@ namespace WebStore.Controllers
 
 				return RedirectToAction(nameof(Index));
 			}
-			//если не валидна, возвращаем её на представление
 			return View(model);
 		}
 
 
 		/// <summary>
-		/// Удаление сотрудника
+		/// Employee delete
 		/// </summary>
-		/// <param name="id">Id сотрудника</param>
+		/// <param name="id">Employee Id</param>
 		/// <returns></returns>
 		[Route("delete/{id}")]
 		public IActionResult Delete(int id)

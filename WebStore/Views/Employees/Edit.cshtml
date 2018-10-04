@@ -22,11 +22,6 @@
 				<span asp-validation-for="SurName" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Patronymic" class="control-label"></label>
-				<input asp-for="Patronymic" class="form-control" />
-				<span asp-validation-for="Patronymic" class="text-danger"></span>
-			</div>
-			<div class="form-group">
 				<label asp-for="Age" class="control-label"></label>
 				<input asp-for="Age" class="form-control" />
 				<span asp-validation-for="Age" class="text-danger"></span>
@@ -43,38 +38,6 @@
 	</div>
 </div>
 <div>
-	<a asp-action="Index"> Назад к списку </a>
+	<a asp-action="Index"> Back to list </a>
 </div>
 
-@*<form asp-action="Edit">
-	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-	<input asp-for="Id" type="hidden" />
-	<div class="form-group">
-		<label asp-for="FirstName" class="control-label"></label>
-		<input asp-for="FirstName" type="text" pattern="[A-Za-zА-Яа-я\u0020\u002D]*" title="Only letters, '-' and space" class="form-control" required />
-		<span asp-validation-for="FirstName" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="SurName" class="control-label"></label>
-		<input asp-for="SurName" type="text" pattern="[A-Za-zА-Яа-я\u0020\u002D]*" title="Only letters, '-' and space" class="form-control" required />
-		<span asp-validation-for="SurName" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="Patronymic" class="control-label"></label>
-		<input asp-for="Patronymic" type="text" pattern="[A-Za-zА-Яа-я\u0020\u002D]*" title="Only letters, '-' and space" class="form-control" required />
-		<span asp-validation-for="Patronymic" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="Age" class="control-label"></label>
-		<input asp-for="Age" type="number" min="18" max="70" title="Only numbers 18-70" class="form-control" required />
-		<span asp-validation-for="Age" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="Position" class="control-label"></label>
-		<input asp-for="Position" type="text" pattern="[A-Za-zА-Яа-я0-9\u0020\u002D]*" title="Only letters, numbers, '-' and space" class="form-control" required />
-		<span asp-validation-for="Position" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<input type="submit" value="Save" class="btn btn-default" />
-	</div>
-</form>*@

@@ -11,10 +11,10 @@ namespace WebStore.Data
 		public static void Initialize(WebStoreContext context)
 		{
 			context.Database.EnsureCreated();
-			// Look for any products.
+
 			if (context.Products.Any())
 			{
-				return;   // DB has been seeded
+				return;
 			}
 			var sections = new List<Section>()
 			{

@@ -18,11 +18,11 @@
 			{
 				var sum = (decimal)sumObj;
 				<ul>
-					<li> Итого <span> @sum.ToString("C") </span></li>
+					<li> Total <span> @sum.ToString("") </span></li>
 				</ul>
 				if (sum > 0)
 				{
-					<input type="submit" value="Оформить заказ" class="btn btn-default check_out" />
+					<input type="submit" value="Checkout" class="btn btn-default check_out" />
 				}
 			}
 		</div>

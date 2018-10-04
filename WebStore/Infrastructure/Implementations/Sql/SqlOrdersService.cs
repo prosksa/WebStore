@@ -53,7 +53,7 @@ namespace WebStore.Infrastructure.Implementations.Sql
 					var productVm = item.Key;
 					var product = _context.Products.FirstOrDefault(p => p.Id.Equals(productVm.Id));
 					if (product == null)
-						throw new InvalidOperationException("Продукт не найден в базе");
+						throw new InvalidOperationException("Product is missing from database");
 					var orderItem = new OrderItem()
 					{
 						Order = order,

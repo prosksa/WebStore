@@ -2,28 +2,25 @@
 
 namespace WebStore.Models
 {
-    public class EmployeeView
-    {
+	public class EmployeeView
+	{
 		public int Id { get; set; }
 
-		[Required(AllowEmptyStrings = false, ErrorMessage = "Имя является обязательным")]
-		[Display(Name = "Имя")]
-		[StringLength(maximumLength: 200, MinimumLength = 2, ErrorMessage = "В имени должно быть не менее 2х и не более 200 символов" )]
+		[Required(AllowEmptyStrings = false, ErrorMessage = "Name is required")]
+		[Display(Name = "Name")]
+		[StringLength(maximumLength: 200, MinimumLength = 2, ErrorMessage = "The name must be at least 2 and no more than 200 characters")]
 		public string FirstName { get; set; }
 
-		[Required(AllowEmptyStrings = false, ErrorMessage = "Фамилия является обязательной")]
-		[Display(Name = "Фамилия")]
+		[Required(AllowEmptyStrings = false, ErrorMessage = "Surname is required")]
+		[Display(Name = "Surname")]
 		public string SurName { get; set; }
 
-		[Display(Name = "Отчество")]
-		public string Patronymic { get; set; }
-
-		[Required(AllowEmptyStrings = false, ErrorMessage = "Возраст является обязательным")]
-		[Display(Name = "Возраст")]
+		[Required(AllowEmptyStrings = false, ErrorMessage = "Age is required")]
+		[Display(Name = "Age")]
 		public int Age { get; set; }
 
-		[Required(AllowEmptyStrings = false, ErrorMessage = "Должность является обязательной")]
-		[Display(Name = "Должность")]
+		[Required(AllowEmptyStrings = false, ErrorMessage = "Position is required")]
+		[Display(Name = "Position")]
 		public string Position { get; set; }
 	}
 }

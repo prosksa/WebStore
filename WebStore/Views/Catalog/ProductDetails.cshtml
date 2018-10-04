@@ -1,7 +1,7 @@
 ﻿@using WebStore.Models.Product
 @model ProductViewModel
 @{
-	ViewData["Title"] = "Товар:" + Model.Name;
+	ViewData["Title"] = "Product:" + Model.Name;
 }
 
 <section>
@@ -54,20 +54,18 @@
 						<!--/product-information-->
 						<img src="~/images/product-details/new.jpg" class="newarrival" alt="" />
 						<h2>@Model.Name</h2>
-						<p>Артикул: 1089772</p>
+						<p>Code: 1089772</p>
 						<img src="~/images/product-details/rating.png" alt="" />
 						<span>
-							<span>@Model.Price.ToString("C")</span>
-							@*<label>Количество:</label>
-								<input type="text" value="3" />*@
+							<span>@Model.Price.ToString("")</span>
 							<a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" asp-route-returnUrl="@Context.Request.Path" class="btn btn-fefault cart">
 								<i class="fa fa-shopping-cart"></i>
-								Добавить в корзину
+								Add to cart
 							</a>
 						</span>
-						<p><b>Доступность:</b> In Stock</p>
+						<p><b>Availability:</b> In Stock</p>
 						<p><b>Condition:</b> New</p>
-						<p><b>Бренд:</b> @Model.Brand</p>
+						<p><b>Brand:</b> @Model.Brand</p>
 						<a href=""><img src="~/images/product-details/share.png" class="share img-responsive" alt="" /></a>
 					</div><!--/product-information-->
 				</div>

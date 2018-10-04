@@ -17,58 +17,41 @@ namespace WebStore
 {
 	public class Startup
 	{
-		/// <summary>
-		/// Добавляем свойство для доступа к конфигурации
-		/// </summary>
 		public IConfiguration Configuration { get; }
 
-		/// <summary>
-		/// Добавляем новый конструктор, принимающий интерфейс IConfiguration
-		/// </summary>
-		/// <param name="configuration"></param>
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
 		}
 
-		// This method gets called by the runtime. Use this method to add services to the container.
-		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			//Добавляем сервисы, необходимые для mvc
 			services.AddMvc();
 
-			//Добавляем разрешение зависимости
 			services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
 			services.AddScoped<IProductData, SqlProductData>();
 			services.AddScoped<IOrdersService, SqlOrdersService>();
 
-			// Добавляем EF Core
 			services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
 				Configuration.GetConnectionString("DefaultConnection")));
 
-			// Настройка Identity
 			services.AddIdentity<User, IdentityRole>()
 				.AddEntityFrameworkStores<WebStoreContext>()
 				.AddDefaultTokenProviders();
 
 			services.Configure<IdentityOptions>(options =>
 			{
-				// Password settings
 				options.Password.RequiredLength = 6;
 
-				// Lockout settings
 				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
 				options.Lockout.MaxFailedAccessAttempts = 10;
 				options.Lockout.AllowedForNewUsers = true;
 
-				// User settings
 				options.User.RequireUniqueEmail = true;
 			});
 
 			services.ConfigureApplicationCookie(options =>
 			{
-				// Cookie settings
 				options.Cookie.HttpOnly = true;
 				options.Cookie.Expiration = TimeSpan.FromDays(150);
 
@@ -79,8 +62,6 @@ namespace WebStore
 				options.SlidingExpiration = true;
 			});
 
-
-			//Настройки для корзины
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			services.AddScoped<ICartService, CookieCartService>();
 		}
@@ -93,14 +74,12 @@ namespace WebStore
 				app.UseDeveloperExceptionPage();
 			}
 
-			//Добавляем расширение для использования статических файлов, т.к. appsettings.json - это статический файл
 			app.UseStaticFiles();
 
 			app.UseWelcomePage("/welcome");
 
 			app.UseAuthentication();
 
-			//Добавляем обработку запросов в mvc-формате
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(

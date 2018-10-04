@@ -13,9 +13,9 @@ namespace WebStore.Infrastructure.Implementations
 		{
 			_employees = new List<EmployeeView>(3)
 			{
-				new EmployeeView(){Id = 1, FirstName = "Вася", SurName = "Пупкин", Patronymic = "Иванович", Age = 22, Position = "Директор"},
-				new EmployeeView(){Id = 2, FirstName = "Иван", SurName = "Холявко", Patronymic = "Александрович", Age = 30, Position = "Программист"},
-				new EmployeeView(){Id = 3, FirstName = "Роберт", SurName = "Серов", Patronymic = "Сигизмундович", Age = 50, Position = "Зав. склада"}
+				new EmployeeView(){Id = 1, FirstName = "John", SurName = "Doe", Age = 22, Position = "Director"},
+				new EmployeeView(){Id = 2, FirstName = "Jack", SurName = "Jacklebons", Age = 30, Position = "Programmer"},
+				new EmployeeView(){Id = 3, FirstName = "Robert", SurName = "Denuovo", Age = 50, Position = "Stuff Manager"}
 			};
 		}
 		public IEnumerable<EmployeeView> GetAll()
@@ -30,7 +30,6 @@ namespace WebStore.Infrastructure.Implementations
 
 		public void Commit()
 		{
-			//ничего не делаем
 		}
 
 		public void AddNew(EmployeeView model)
